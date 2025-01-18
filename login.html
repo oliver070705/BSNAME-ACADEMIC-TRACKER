@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Signin</title>
+    <!-- Bootstrap core CSS -->
+    <link href="public/bootstrap-5.0.1-dist/css/bootstrap.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="public/customcss/signin.css" rel="stylesheet">
+    <!-- jQuery and jQuery Validation -->
+    <script src="public/validate-js/jquery-3.6.0.min.js"></script>
+    <script src="public/validate-js/jquery.validate.js"></script>
+</head>
+
+<body class="text-center">
+
+    <main class="form-signin">
+        <form action="" method="post" id="signin-form">
+            <img class="mb-4" src="public/img/brand.png" alt="" width="176" height="172">
+            
+            <h1 class="h5 mb-3 fw-normal"><strong style="color:black">Bachelor of Science in Naval Architecture and Marine Engineering</strong></h1>
+            
+            <h1 class="h5 mb-3 fw-normal"><strong style="color:green">Student's</strong><b style="color: #555"> Academic Tracker</b></h1>
+
+            <div class="form-group pb-2">
+                <input type="text" class="form-control form-control-md" id="username" name="username" placeholder="Username" required>
+            </div>
+            <div class="form-group mb-4">
+                <input type="password" class="form-control form-control-md mb-0" id="password" name="password" placeholder="Password" required>
+            </div>
+
+            <input class="w-100 p-1 btn btn-md btn-success" type="submit" value="Sign in" name="login">
+            <a class="w-100 p-1 mt-1 btn btn-md btn-warning" href="register.html"> Create an Account </a>
+
+            <p class="mt-5 mb-3 text-muted foot-print"> <a href="">Data Privacy</a> | <a href="">Terms & Conditions</a> | <a href="#">Maintenance Team<a> | <a href="https://confired.com">Developer</a> | &copy; 2025 </p>
+        </form>
+    </main>
+
+    <!-- Toast -->
+    <div class="position-fixed bottom-0 end-0 p-3 toast-container" style="z-index: 5">
+        <div class="toast" id="feedbackToast" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="false">
+            <div id="toast-header" class="toast-header">
+                <strong id="toast-title" class="me-auto"></strong>
+                <small class="text-muted">Just now</small>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body" id="toast-message" style="text-align:left;">
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="public/bootstrap-5.0.1-dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#signin-form').on('submit', function (e) {
+                e.preventDefault(); // Prevent form submission
+                const username = $('#username').val().trim();
+                const password = $('#password').val().trim();
+
+                const toastHeader = $('#toast-header');
+                const toastTitle = $('#toast-title');
+                const toastMessage = $('#toast-message');
+
+                if (username === 'admin' && password === '1234') {
+                    // Success
+                    toastHeader.removeClass('bg-danger').addClass('bg-success text-white');
+                    toastTitle.text('Success');
+                    toastMessage.text('Welcome! You have successfully logged in.');
+                } else {
+                    // Failure
+                    toastHeader.removeClass('bg-success').addClass('bg-danger text-white');
+                    toastTitle.text('Error');
+                    toastMessage.text('Invalid username or password. Please try again.');
+                }
+
+                $('#feedbackToast').toast('show');
+            });
+        });
+    </script>
+    <script>
+    $(document).ready(function () {
+        $('#signin-form').on('submit', function (e) {
+            e.preventDefault(); // Prevent form submission
+            const username = $('#username').val().trim();
+            const password = $('#password').val().trim();
+
+            const toastHeader = $('#toast-header');
+            const toastTitle = $('#toast-title');
+            const toastMessage = $('#toast-message');
+
+            if (username === 'admin' && password === '1234') {
+                // Success
+                toastHeader.removeClass('bg-danger').addClass('bg-success text-white');
+                toastTitle.text('Success');
+                toastMessage.text('Welcome! You have successfully logged in. Redirecting you to the dashboard');
+
+                $('#feedbackToast').toast('show');
+
+                // Redirect to dashboard.html after 3 seconds
+                setTimeout(() => {
+                    window.location.href = "DashboardPanel/student-dashboard/index.html";
+                }, 3000);
+            } else {
+                // Failure
+                toastHeader.removeClass('bg-success').addClass('bg-danger text-white');
+                toastTitle.text('Error');
+                toastMessage.text('Invalid username or password. Please try again.');
+
+                $('#feedbackToast').toast('show');
+            }
+        });
+    });
+</script>
+<div id="loading-animation" class="d-none">
+    <div class="spinner-border text-success" role="status">
+        <span class="visually-hidden">Loading...</span>
+    </div>
+</div>
+
+</body>
+
+</html>
